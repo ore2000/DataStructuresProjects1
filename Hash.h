@@ -38,8 +38,8 @@ public:
 	T* hashZ;
 	T* hashaMal;*/
 
-	T *hashArr[27];
-	T *hashPointer = nullptr;
+	T **hashArr;
+	
 	//Tree class variables
 	int  size = 0;
 	const static int hashSize = 133177;
@@ -51,16 +51,11 @@ public:
 	//constructor
 	myhash()
 	{
-		hashPointer = new T[hashSize];
-		for (int j = 0; j < hashSize; j++)
-		{
-			hashPointer[j] = "";
-		}
+		hashArr = new T*[27];
 		size = 0;
 		for (int i = 0; i < 27; i++)
 		{
 			hashArr[i] = new T[hashSize];
-			hashArr[i] = hashPointer;
 			
 		}
 	}
@@ -93,7 +88,13 @@ public:
 			bool entered = false;
 			while (!entered)
 			{
-				key++;
+				if(key < hashSize)
+				{
+					key++;
+				}else
+				{
+					key = 0;
+				}
 				if (letterHead[key] == "")
 				{
 					letterHead[key] = item;
@@ -332,41 +333,53 @@ public:
 	}
 
 	//find function
-	bool find(T item, T *&letterHead)
+	bool find(T item, T *letterHead)
 	{
 		int key = findHash(item);
-		if (letterHead[key].compare(item) == 0)
+		if(letterHead[key].compare("") == 0)
+                {
+                        notFoundComp += compares;
+                        return false;
+                }
+		else if (letterHead[key].compare(item) == 0)
 		{
 			compares++;
 			foundComp += compares;
 			return true;
 		}
-		else if(letterHead[key] == "")
-		{
-			notFoundComp += compares;
-			return false;
-		}
 		else
 		{
-			//use linearprobing to fix
-			bool found = false;
-			while (!found)
-			{
-				key++;
-				if (letterHead[key].compare(item) == 0)
-				{
-					compares++;
-					foundComp += compares;
-					return true;
-				}
-				else if (letterHead[key].compare("") == 0)
-				{
-					compares++;
-					notFoundComp += compares;
-					return false;
-				}
-			}
+		   return fix(key,letterHead,item);
 		}
+	}
+
+	bool fix(int key,T *letterHead,T item)
+	{
+		 //use linearprobing to fix
+                 bool found = false;
+                        while (!found)
+                        {
+                                if(key < hashSize)
+                                {
+                                        key++;
+                                }else
+                                {
+                                        key =0;
+                                }
+                                if (letterHead[key].compare(item) == 0)
+                                {
+                                        compares++;
+                                        foundComp += compares;
+                                        return true;
+                                }
+                                else if (letterHead[key].compare("") == 0)
+                                {
+                                        compares++;
+                                        notFoundComp += compares;
+                                        return false;
+                                }
+                        }
+
 	}
 
 	//used to delete a node and its children

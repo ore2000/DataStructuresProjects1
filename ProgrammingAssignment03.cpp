@@ -9,7 +9,7 @@
 #include<iostream>
 #include<algorithm>
 #include "Hash.h"
-#include "Timer.h"
+#include "timer.h"
 using namespace std;
 
 //function used to remove non alphabets and apostrophes.
