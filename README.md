@@ -2,11 +2,11 @@ Program #3
 
 COSC 2030
 
-Name:
-Lab section #: 
+Name: Oreoluwa A. Babatunde
+Lab section #: Section 10
 
-Competing: YES or NO
+Competing: YES
 
-Best run time:
+Best run time: 1.26747s on hive
 
-Anything that doesn't work:
+Anything that doesn't work: Everything works.
