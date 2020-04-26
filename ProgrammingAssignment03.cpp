@@ -1,7 +1,7 @@
-//Programming assigment 1
+//Programming assigment 3
 //Name: Oreoluwa A. BAbatunde
 //COSC2030 Spring 2020
-// Date LAst Modified 2/26/2020
+// Date LAst Modified 4/26/2020
 
 #include<vector>
 #include<string>
@@ -147,6 +147,8 @@ int main()
 	cout << "finished in time: ";
 	cout << timer.Time();
 	cout << "\n";
+	cout<<"finished in Milliseconds Time: ";
+	cout<< timer.TimeMS()<< "\n";
 	cout << "There are ";
 	cout << correctlySpelled;
 	cout << " words found in the dictionary";
