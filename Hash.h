@@ -335,6 +335,7 @@ public:
 	//find function
 	bool find(T item, T *letterHead)
 	{
+		compares++;
 		int key = findHash(item);
 		if(letterHead[key].compare("") == 0)
                 {
@@ -343,7 +344,6 @@ public:
                 }
 		else if (letterHead[key].compare(item) == 0)
 		{
-			compares++;
 			foundComp += compares;
 			return true;
 		}
@@ -368,13 +368,13 @@ public:
                                 }
                                 if (letterHead[key].compare(item) == 0)
                                 {
-                                        compares++;
+                            
                                         foundComp += compares;
                                         return true;
                                 }
                                 else if (letterHead[key].compare("") == 0)
                                 {
-                                        compares++;
+                                        
                                         notFoundComp += compares;
                                         return false;
                                 }
