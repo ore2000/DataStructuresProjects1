@@ -9,38 +9,10 @@ template<class T>
 class myhash
 {
 public:
-	//hash variables for words that start with different letters
-	/*T* hashA;
-	T* hashB;
-	T* hashC;
-	T* hashD;
-	T* hashE;
-	T* hashF;
-	T* hashG;
-	T* hashH;
-	T* hashI;
-	T* hashJ;
-	T* hashK;
-	T* hashL;
-	T* hashM;
-	T* hashN;
-	T* hashO;
-	T* hashP;
-	T* hashQ;
-	T* hashR;
-	T* hashS;
-	T* hashT;
-	T* hashU;
-	T* hashV;
-	T* hashW;
-	T* hashX;
-	T* hashY;
-	T* hashZ;
-	T* hashaMal;*/
-
+        //Array to hold hash variables for the words that start with different letters.
 	T **hashArr;
 	
-	//Tree class variables
+	//Hash class variables
 	int  size = 0;
 	const static int hashSize = 133177;
 	long double foundComp = 0.0;
@@ -222,6 +194,7 @@ public:
 	//Find function to decide what tree to go into
 	bool find(T item)
 	{
+		compares = 0.0;
 		if (item[0] == 'a')
 		{
 			return find(item, hashArr[0]);
@@ -349,37 +322,31 @@ public:
 		}
 		else
 		{
-		   return fix(key,letterHead,item);
-		}
-	}
-
-	bool fix(int key,T *letterHead,T item)
-	{
-		 //use linearprobing to fix
-                 bool found = false;
-                        while (!found)
-                        {
-                                if(key < hashSize)
-                                {
-                                        key++;
-                                }else
-                                {
-                                        key =0;
-                                }
-                                if (letterHead[key].compare(item) == 0)
-                                {
-                            
-                                        foundComp += compares;
-                                        return true;
-                                }
-                                else if (letterHead[key].compare("") == 0)
-                                {
-                                        
-                                        notFoundComp += compares;
-                                        return false;
-                                }
-                        }
-
+                   //use linearprobing to fix
+                   bool found = false;
+                   while (!found)
+                   {
+                       if(key < hashSize)
+                       {
+                          key++;
+                       }else
+                       {
+                          key = 0;
+                       }
+                       compares++;
+                       if (letterHead[key].compare(item) == 0)
+                       {
+                          foundComp += compares;
+                          return true;
+                       } 
+                       else if (letterHead[key].compare("") == 0)
+                       {
+                          notFoundComp += compares;
+                          return false;
+                       }
+                   }
+                   return false;
+		}  
 	}
 
 	//used to delete a node and its children
