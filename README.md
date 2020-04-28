@@ -9,6 +9,6 @@ Competing: YES
 
 Best run time: 1.26747s on hive
 
-How to compile on pi: 
+How to compile on pi:  g++ ProgrammingAssignment03.cpp -o output.out
 
 Anything that doesn't work: Everything works.
